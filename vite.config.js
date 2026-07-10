@@ -12,7 +12,7 @@ const BUILD_TIMESTAMP = now.toLocaleTimeString('en-US', {
 
 export default defineConfig({
   plugins: [react()],
-  base: '/react-portfolio/',
+  base: '/phil-house-quest/',
   define: {
     'import.meta.env.BUILD_TIMESTAMP': JSON.stringify(BUILD_TIMESTAMP),
   },
