@@ -1,57 +1,64 @@
 import { Routes, Route } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import AISetup from './pages/AISetup'
+import { Link } from 'react-router-dom'
+import PhilLanding from './pages/PhilLanding'
+import Pong from './pages/Pong'
 import './styles/animations.css'
+
+function PongPage() {
+  return (
+    <div style={{ minHeight: '100vh', background: '#020617' }}>
+      <div style={{ padding: '1.5rem 2rem' }}>
+        <Link
+          to="/"
+          style={{
+            color: '#0ea5e9',
+            textDecoration: 'none',
+            fontFamily: 'JetBrains Mono, monospace',
+            fontWeight: 700,
+            fontSize: '0.9rem',
+          }}
+        >
+          ← Back to Phil's House Quest
+        </Link>
+      </div>
+      <Pong />
+    </div>
+  )
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-950 transition-colors duration-300">
-      <Navbar />
-      <main className="flex-1 pt-24">
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="min-h-screen"
-              >
-                <Home />
-              </motion.div>
-            } />
-            <Route path="/about" element={
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="min-h-screen"
-              >
-                <About />
-              </motion.div>
-            } />
-            <Route path="/ai-setup" element={
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="min-h-screen"
-              >
-                <AISetup />
-              </motion.div>
-            } />
-          </Routes>
-        </AnimatePresence>
-      </main>
-      <Footer />
-    </div>
+    <AnimatePresence mode="wait">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <PhilLanding />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/pong"
+          element={
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <PongPage />
+            </motion.div>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
   )
 }
 
